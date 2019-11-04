@@ -10,23 +10,24 @@ class Location
 		@@all
 	end
 
-	def self.find_clients
+	def find_clients
+		Client.all.select do |client|
+			client.location == self 
+		end #+> array of clients at this location
+	end
+
+	def self.find_clients_per_location
 		location_hash = {}
 
 		Location.all.each do |location|
-
-			location_hash[location] = []
-			Client.all.each do |client|
-				if client.location == location 
-					location_hash[location] << client
-				end
-			end #+> array of clients at this location
+			location_hash[location] = location.find_clients
 		end 
+		
 		location_hash
 	end
 
 	def self.least_clients
-		location_hash = Location.find_clients
+		location_hash = Location.find_clients_per_location
 
 		location_hash.map do |location, clients|
 			location_hash[location] = clients.count

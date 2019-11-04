@@ -10,23 +10,24 @@ class Trainer
 		@@all
 	end
 
-	def self.find_clients
+	def find_clients
+		Client.all.select do |client|
+			client.trainer == self
+		end
+	end
+
+	def self.find_clients_per_trainer
 		trainer_hash = {}
 
-		Trainer.all.select do |trainer|
-			trainer_hash[trainer] = []
-
-			Client.all.each do |client|
-				if client.trainer == trainer
-					trainer_hash[trainer] << client
-				end
-			end
+		Trainer.all.each do |trainer|
+			trainer_hash[trainer] = trainer.find_clients	
 		end
-	trainer_hash	
+
+		trainer_hash	
 	end
 
 	def self.most_clients
-		trainer_hash = Trainer.find_clients
+		trainer_hash = Trainer.find_clients_per_trainer
 
 		trainer_hash.map do |trainer, clients|
 			trainer_hash[trainer] = clients.count
