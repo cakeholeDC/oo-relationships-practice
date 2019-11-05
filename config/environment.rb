@@ -17,7 +17,5 @@ Ride.new(kyle, jose, 15)
 Ride.new(kyle, juan, 95)
 Ride.new(sara, peter, 99)
 
-
-
 binding.pry
 0
