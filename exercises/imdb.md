@@ -7,9 +7,13 @@ relationships you need to build the site.
 
 - your models are movies, shows, characters and actors
   - movies and shows have many characters
+
   - actors have many characters
+
   - characters only have one actor (for this model)
+
   - characters may have multiple movies or shows
+  
   - what other relationships exist?
 - for an extra twist, afterwards throw episodes into the mix and see how the
   relationships change
