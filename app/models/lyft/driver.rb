@@ -19,6 +19,12 @@ class Driver
 		end
 	end
 
+	def passengers
+		self.rides.map do |ride|
+			ride.passenger
+		end.uniq
+	end
+
 	def count_rides
 		self.rides.count
 	end

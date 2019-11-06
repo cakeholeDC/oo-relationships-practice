@@ -7,7 +7,7 @@ class Ride
 	def initialize(passenger, driver, distance)
 		@passenger = passenger
 		@driver = driver
-		@distance = distance
+		@distance = distance.to_f
 		@@all << self
 	end
 
